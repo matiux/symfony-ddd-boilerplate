@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [ ! "production" == "$APP_ENV" ] && [ ! "prod" == "$APP_ENV" ]; then
+    # Enable xdebug
+
+    ## FPM
+    ln -sf /etc/php/7.1/mods-available/xdebug.ini /etc/php/7.1/fpm/conf.d/20-xdebug.ini
+
+    ## CLI
+    ln -sf /etc/php/7.1/mods-available/xdebug.ini /etc/php/7.1/cli/conf.d/20-xdebug.ini
+else
+    # Disable xdebug
+
+    ## FPM
+    if [ -e /etc/php/7.1/fpm/conf.d/20-xdebug.ini ]; then
+        rm -f /etc/php/7.1/fpm/conf.d/20-xdebug.ini
+    fi
+
+    ## CLI
+    if [ -e /etc/php/7.1/cli/conf.d/20-xdebug.ini ]; then
+        rm -f /etc/php/7.1/cli/conf.d/20-xdebug.ini
+    fi
+fi
+
+sed -i -e 's/zend_extension=xdebug.so/zend_extension=\/usr\/local\/xdebug\/xdebug.so/g' /etc/php/7.1/mods-available/xdebug.ini
+
+/usr/bin/supervisord
