@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y software-properties-common  \
       build-essential pkg-config make git g++ gcc \
       libmemcached-dev libmsgpack-dev libmsgpackc2 zlib1g zlib1g-dev \
       vim vim-gtk3 \
-      supervisor \
+      supervisor acl \
       php7.1 php7.1-fpm php7.1-bcmath \
       php7.1-bz2 php7.1-cgi php7.1-cli \
       php7.1-common php7.1-curl php7.1-dev \
