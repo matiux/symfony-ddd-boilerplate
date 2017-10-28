@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b150df3f55f817038121e1ee062f7bcd",
+    "content-hash": "cc99e8c4fc14aa726b43e3eec612d7f1",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1244,7 +1244,7 @@
         },
         {
             "name": "matiux/ddd-starter-pack",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matiux/DddStarterPack.git",
@@ -1281,7 +1281,7 @@
             ],
             "description": "Basic DDD structure",
             "support": {
-                "source": "https://github.com/matiux/DddStarterPack/tree/master",
+                "source": "https://github.com/matiux/DddStarterPack/tree/v1.0.0",
                 "issues": "https://github.com/matiux/DddStarterPack/issues"
             },
             "time": "2017-10-28T14:10:54+00:00"
@@ -2851,9 +2851,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "matiux/ddd-starter-pack": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

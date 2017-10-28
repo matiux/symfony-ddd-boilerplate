@@ -20,7 +20,7 @@ services:
     environment:
       - APP_ENV=${APP_ENV}
       #- XDEBUG_HOST: ${XDEBUG_HOST}
-    command: sh ./docker/custom_task/fix_sf_permissions.sh
+    #command: sh ./docker/custom_task/fix_sf_permissions.sh
   mariadb:
     build: ./docker/mariadb
     volumes:
