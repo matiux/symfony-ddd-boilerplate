@@ -1,37 +1,47 @@
 #Ambiente LEMP per applicazioni PHP standard
 
-##Cambio ENV da DEV a PROD (Simulazione)
+#### Pull e push
+* Creare il repo su docker hub
+* Taggare durante il build: `docker build -t matiux/nginx:latest .`
+* Taggare dopo il build: `docker tag df892c128f74  matiux/php7.1-fpm-nginx:latest`
+* Pullare l'immagine sul repo: `docker pull matiux/nginx:latest`
+* Push: `docker push matiux/php7-fpm-nginx:7.1`
 
-#### Purge all
+#### Link utili:
+*https://docs.docker.com/compose/compose-file/#service-configuration-reference
+*https://docs.docker.com/engine/reference/builder/#using-arg-variables
 
-docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
+#### Comandi utili
+* Collegary a mysql: `mycli -uroot -ppwd -h localhost -P3307`
+* Purge all: `docker rm $(docker ps -a -q) && docker rmi $(docker images -q)`
+* Spin down any running containers: `./dc down`
+* Rebuild the image to suck in latest `start-container` file: `./dc build`
+* Turn on containers, let it use the default "local" environment - xdebug is enabled!:
+   ```
+   ./dc up -d
+   ./dc exec app php --info | grep remote_enable
+   ```
+* Check that xdebug is not present/enabled when APP_ENV is set to "production":
+   ```
+   APP_ENV=production ./develop up -d
+   ./dc exec app php --info | grep remote_enable
+   ```
 
-#### Spin down any running containers
+#### Redis
+
+Dato che l'immagine è alpine, non c'è bash. Usare quindi:
 ```
-./dc down
+docker exec -it redis sh
 ```
 
-#### Rebuild the image to suck in latest `start-container` file
+Come usarlo nel codice:
+
 ```
-./dc build
+$client = RedisAdapter::createConnection(
+   'redis://redis_db:6379'
+);
 ```
 
-#### Turn on containers, let it use the default "local" environment - xdebug is enabled!
-```
-./dc up -d
-./dc exec app php --info | grep remote_enable
-```
-
-#### Spin containers down
-```
-./dc down
-```
-
-#### Check that xdebug is not present/enabled when APP_ENV is set to "production"
-```
-APP_ENV=production ./develop up -d
-./dc exec app php --info | grep remote_enable
-```
 
 #TODO
 * Controllarer l'orario del container php
