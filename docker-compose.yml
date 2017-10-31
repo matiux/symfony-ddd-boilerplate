@@ -11,7 +11,7 @@ services:
       - ./docker/logs/nginx/:/var/log/nginx
       - ./:/var/www/app
   php:
-    build: ./docker/php
+    image: matiux/php7-fpm-nginx:7.1
     volumes:
       - ./:/var/www/app
     environment:
