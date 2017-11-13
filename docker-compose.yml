@@ -2,7 +2,11 @@ version: '3'
 
 services:
   nginx:
-    image: matiux/debian-nginx
+    image: matiux/debian-nginx:symfony
+    # build:
+    #   context: ./docker/nginx
+    #   args:
+    #     - FRAMEWORK=${FRAMEWORK}
     ports:
       - '8080:80'
     depends_on:
@@ -11,7 +15,10 @@ services:
       - ./docker/logs/nginx/:/var/log/nginx
       - ./:/var/www/app
   php:
-    image: matiux/php7-fpm-nginx:7.1
+    #build: ./docker/php/7.1-fpm
+    image: matiux/php:7.1-fpm
+    tty: true # -t option in docker
+    stdin_open: true # -i option in docker
     volumes:
       - ./:/var/www/app
     environment:
@@ -40,7 +47,7 @@ services:
   #   image: memcached:latest
   #   volumes:
   #     - ./docker/data/memcached:/var/lib/memcached
-  redis_db:
-    image: redis:alpine
-    #command: redis-server --requirepass redis
-    ports: ["6379"]
+  # redis_db:
+  #   image: redis:alpine
+  #   #command: redis-server --requirepass redis
+  #   ports: ["6379"]
