@@ -8,7 +8,7 @@ L'applicazione funziona all'interno di un conainer docker. Preparare l'ambiente 
 
 #### Clone del progetto
 ```
-git clone git@github.com:matiux/SymfonyDDDBoilerplate.git Sherlock && cd SymfonyDDDBoilerplate
+git clone git@github.com:matiux/SymfonyDDDBoilerplate.git && cd SymfonyDDDBoilerplate
 ```
 
 #### Variabili d'ambiente
