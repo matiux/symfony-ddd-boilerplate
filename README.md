@@ -23,7 +23,7 @@ cp env.dist .env
 ```
 ./dc down -v
 ```
-
+Per ulteriori informazioni controllare il readme in `./docker/redme.md`
 ## Sviluppo
 
 #### Entrare nel container PHP per lo sviluppo
