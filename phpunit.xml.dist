@@ -6,10 +6,16 @@
          backupGlobals="false"
          colors="true"
          bootstrap="vendor/autoload.php"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="true"
+         stopOnFailure="true"
 >
     <php>
-        <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_CLASS" value="AppKernel" />
+        <ini name="error_reporting" value="-1"/>
+        <server name="KERNEL_CLASS" value="AppKernel"/>
+        <env name="APP_ENV" value="test"/>
     </php>
 
     <testsuites>

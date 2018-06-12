@@ -1,6 +1,6 @@
 <?php
 
-namespace Company;
+namespace Application;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
