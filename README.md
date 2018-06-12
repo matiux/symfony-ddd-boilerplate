@@ -55,7 +55,7 @@ test --group integration
 test --group unit
 ```
 
-## Fix Symfony permission:
+## Fix permessi Symfony:
 
 Da dentro al container php:
 
