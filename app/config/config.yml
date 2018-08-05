@@ -48,6 +48,10 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
+        server_version: '%mysql_version%'
+        default_table_options:
+          charset: utf8
+          collate: utf8_general_ci
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
