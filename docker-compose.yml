@@ -6,7 +6,7 @@ volumes:
 
 services:
   nginx:
-    image: matiux/nginx:symfony-2.0.0
+    image: nginx:latest
     ports:
       - '8080:80'
     depends_on:
@@ -14,9 +14,9 @@ services:
     volumes:
       - ./docker/logs/nginx/:/var/log/nginx
       - ./:/var/www/app
+      - ./docker/nginx/symfony-3.conf:/etc/nginx/conf.d/default.conf
   php:
     build: ./docker/php
-    #image: matiux/php:7.1-fpm
     tty: true # -t option in docker
     stdin_open: true # -i option in docker
     hostname: app_hostname
