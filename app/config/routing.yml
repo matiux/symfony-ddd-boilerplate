@@ -1,3 +1,3 @@
 home:
   path: /
-  defaults: { _controller: Application\Infrastructure\Delivery\Http\Controller\DefaultController::indexAction }
+  defaults: { _controller: ProjectName\Infrastructure\Delivery\Http\Controller\DefaultController::indexAction }
