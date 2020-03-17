@@ -1,0 +1,5 @@
+common:
+  resource: 'routes/project/v1/common.yml'
+#  prefix: /v1
+  defaults:
+    _format: json

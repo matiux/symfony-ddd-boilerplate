@@ -1,10 +1,25 @@
-FROM matiux/php:7.2-fpm-1.0.0
+FROM matiux/php:7.4.1-fpm-alpine3.11-dev
 
-RUN echo 'alias test="vendor/bin/phpunit"' >> /home/utente/.bashrc && \
-    echo 'alias sf="bin/console"' >> /home/utente/.bashrc  && \
-    echo 'alias sfcc="rm -Rf var/cache/*"' >> /home/utente/.bashrc  && \
-    echo 'alias memflush="echo \"flush_all\" | nc servicememcached 11211 -q 1"' >> /home/utente/.bashrc  && \
-    /usr/local/bin/composer self-update && \
-    mkdir -p /home/utente/.composer/cache && \
-    chown -R utente:utente /home/utente/.composer/cache && \
-    echo "ServerAliveInterval 120" >> /etc/ssh/ssh_config
+USER root
+
+COPY conf/xdebug-starter.sh /usr/local/bin/xdebug-starter
+RUN chmod +x /usr/local/bin/xdebug-starter
+RUN /usr/local/bin/xdebug-starter
+
+RUN rm /usr/local/etc/php/conf.d/docker-php-memlimit.ini
+ADD conf/php.ini /usr/local/etc/php
+
+RUN /usr/local/bin/composer self-update \
+    && mkdir -p /home/utente/.composer/cache \
+    && chown -R utente:utente /home/utente/.composer/cache
+
+USER utente
+
+RUN echo 'alias test="./vendor/bin/simple-phpunit"' >> /home/utente/.zshrc \
+    && echo 'alias sfcc="rm -Rf var/cache/*"' >> /home/utente/.zshrc \
+    && echo 'alias sf="bin/console"' >> /home/utente/.zshrc \
+    && echo 'alias memflush="echo \"flush_all\" | nc servicememcached 11211 -q 1"' >> /home/utente/.zshrc
+
+COPY --chown=utente:utente ssh/* /home/utente/.ssh/
+COPY --chown=utente:utente git/.gitconfig /home/utente/.gitconfig
+RUN  chmod 600 /home/utente/.ssh/id_rsa

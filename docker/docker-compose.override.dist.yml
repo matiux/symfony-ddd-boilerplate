@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  nginx:
+    ports:
+      - 8080:80
+
+  servicedb:
+    ports:
+      - 3307:3306
+
+  phpmyadmin:
+    ports:
+      - 8081:80
