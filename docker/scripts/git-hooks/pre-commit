@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+PHP_STAGED_FILES=$(git diff --name-only --cached --diff-filter=ACMR -- '*.php' | sed 's| |\\ |g')
+
+if [[ -n "$PHP_STAGED_FILES" ]]; then
+
+    make check-cs
+    STATUS=$?
+
+    if [[ "$STATUS" -eq 0 ]]; then
+        echo ""
+        echo -e "${GREEN} Code style is OK ${NC}"
+    else
+        while true; do
+            echo -e "${RED} Invalid code style ${NC}"
+            read -p $'\e[31mDo you really want to commit ignoring code style warnings? y/n/f[Fix] \e[0m: ' yn < /dev/tty
+            case $yn in
+                [Yy]* ) echo ""; echo "Please consider fixing code style"; break;;
+                [Nn]* ) echo "Run 'make check-cs-fix' to fix"; exit 1;;
+                [Ff]* ) make check-cs-fix && git add .; break;;
+                * ) echo "Please answer y, n or f.";;
+            esac
+        done
+    fi
+
+    make psalm
+    STATUS=$?
+
+    if [[ "$STATUS" -eq 0 ]]; then
+        echo -e "${GREEN} PHP Static Analysis is OK ${NC}"
+    else
+        while true; do
+            read -p $'\e[31mDo you really want to commit ignoring psalm errors? y/n \e[0m: ' yn < /dev/tty
+            case $yn in
+                [Yy]* ) echo ""; echo "Please consider fixing psalm errors"; break;;
+                [Nn]* ) exit 1;; # No commit
+                * ) echo "Please answer y or n.";;
+            esac
+        done
+    fi
+
+
+    make test
+    STATUS=$?
+
+    if [[ "$STATUS" -eq 0 ]]; then
+        echo -e "${GREEN} PHP Unit Tests Suite is OK ${NC}"
+    else
+        echo "${RED} Pay attention! Unit Tests are broken. ${NC}"
+        exit 1
+    fi
+
+else
+    echo -e "No PHP staged files"
+    exit 0
+fi
+
