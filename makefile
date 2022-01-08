@@ -61,7 +61,7 @@ phpunit: ## esegue phpunit
 		$(compose) -p $(PROJECT_NAME) exec -T $(php_container) sh -lc "sudo xoff;php vendor/bin/simple-phpunit $(conf)"
 
 .PHONY: test
-test: db_test phpunit ## esegue i test unitari e di integrazione
+test: phpunit ## esegue i test unitari e di integrazione
 
 .PHONY: check-cs
 check-cs: ## verifica i coding standards nei files in staged
