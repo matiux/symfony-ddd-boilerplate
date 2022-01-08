@@ -62,3 +62,11 @@ services:
       - app_memcached:/var/lib/memcached
     networks:
       - app_net
+
+  nodejs:
+    build: nodejs
+    working_dir: /var/www/app
+    volumes:
+      - ../:/var/www/app
+    networks:
+      - app_net

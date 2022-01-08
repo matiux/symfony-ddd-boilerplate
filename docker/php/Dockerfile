@@ -1,4 +1,4 @@
-FROM matiux/php:7.4.1-fpm-alpine3.11-dev
+FROM matiux/php:fpm-8.0-bullseye-dev
 
 USER root
 
