@@ -1,3 +1,28 @@
+###> Docker ###
+docker/docker-compose.override.yml
+###< Docker ###
+
+###> Misc ###
+.idea
+Http/rest-client.private.env.json
+config/json
+.deptrac.cache
+###< Misc ###
+
+###> friendsofphp/php-cs-fixer ###
+.php_cs
+.php_cs.cache
+.php-cs-fixer.cache
+lsp
+###< friendsofphp/php-cs-fixer ###
+
+###> code coverage ###
+/public/coverage/
+.coverage
+#/public/coverage-clover.xml
+/public/coverage-badge.svg
+/public/*.svg
+###< code coverage ###
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -9,19 +34,8 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> Docker ###
-/docker/docker-compose.override.yml
-/docker/php/ssh
-/docker/php/git
-/docker/data/shell_history/.xsh_history
-###< Docker ###
-
 ###> symfony/phpunit-bridge ###
 .phpunit
-.phpunit.result.cache
+tools/phpunit/.phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-
-###> Misc ###
-.idea
-###< Misc ###

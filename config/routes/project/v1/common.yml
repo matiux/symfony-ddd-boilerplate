@@ -1,4 +1,0 @@
-index:
-  path: /
-  methods: [GET]
-  controller: Project\Common\Infrastructure\Communication\Http\Symfony\Controller\DefaultController::index

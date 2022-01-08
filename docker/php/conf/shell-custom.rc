@@ -1,0 +1,2 @@
+alias sfcc="rm -Rf var/cache/*"
+alias sf="bin/console"
