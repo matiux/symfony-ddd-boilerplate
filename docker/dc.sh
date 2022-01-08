@@ -38,7 +38,7 @@ elif [[ "$1" == "phpunit" ]]; then shift 1;                       ${DC_EXEC} $PR
 elif [[ "$1" == "psalm" ]]; then shift 1;                         ${DC_EXEC} $PROJECT_TOOL psalm "$@"
 elif [[ "$1" == "deptrac-all" ]]; then shift 1;                   ${DC_EXEC} $PROJECT_TOOL deptrac-all
 
-elif [[ "$1" == "exec" ]]; then shift 1;                           ${DC_EXEC} "$@"
+elif [[ "$1" == "exec" ]]; then shift 1;                          ${DC_EXEC} "$@"
 elif [[ $# -gt 0 ]]; then                                         ${DC_BASE_COMMAND} "$@"
 else                                                              ${DC_BASE_COMMAND} ps
 fi
